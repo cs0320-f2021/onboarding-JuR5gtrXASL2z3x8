@@ -44,6 +44,7 @@ public final class Main {
     this.args = args;
   }
 
+  @SuppressWarnings("checkstyle:TodoComment")
   private void run() {
     // set up parsing of command line flags
     OptionParser parser = new OptionParser();
@@ -60,16 +61,25 @@ public final class Main {
       runSparkServer((int) options.valueOf("port"));
     }
 
-    // TODO: Add your REPL here!
     try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
       String input;
       while ((input = br.readLine()) != null) {
         try {
           input = input.trim();
           String[] arguments = input.split(" ");
-          System.out.println(arguments[0]);
-          // TODO: complete your REPL by adding commands for addition "add" and subtraction
-          //  "subtract"
+
+          MathBot mathbot = new MathBot();
+          if (arguments[0].equals("add")) {
+            double sum = mathbot.add(Double.parseDouble(arguments[1]),
+                Double.parseDouble(arguments[2]));
+            System.out.println(sum);
+          } else if (arguments[0].equals("subtract")) {
+            double diff = mathbot.subtract(Double.parseDouble(arguments[1]),
+                Double.parseDouble(arguments[2]));
+            System.out.println(diff);
+          } else {
+            System.out.println(arguments[0]);
+          }
         } catch (Exception e) {
           // e.printStackTrace();
           System.out.println("ERROR: We couldn't process your input");
