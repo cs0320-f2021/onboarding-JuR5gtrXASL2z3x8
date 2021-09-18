@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
@@ -25,6 +26,7 @@ import spark.template.freemarker.FreeMarkerEngine;
  * The Main class of our project. This is where execution begins.
  */
 public final class Main {
+  private Galaxy galaxy;
 
   // use port 4567 by default when running server
   private static final int DEFAULT_PORT = 4567;
@@ -66,19 +68,57 @@ public final class Main {
       while ((input = br.readLine()) != null) {
         try {
           input = input.trim();
-          String[] arguments = input.split(" ");
+          String[] arguments = input.split(" (?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+          if (arguments[0].equals("stars")) {
+            try {
+              this.galaxy = new Galaxy(arguments[1]);
+            } catch (Exception e) {
+              System.out.println("ERROR: No stars file was specified");
+            }
+          }
+
+          if (arguments[0].equals("naive_neighbors")) {
+            try {
+              ArrayList<Integer> nearestKNeighbors;
+              if (arguments[1].equals("0")) {
+                System.out.println("Read " + this.galaxy.getSize() + " stars from "
+                    + this.galaxy.getStarDataFile());
+              } else {
+                if (arguments.length > 3) {
+                  nearestKNeighbors = this.galaxy.getNearestKNeighbors(arguments[1], arguments[2],
+                      arguments[3], arguments[4]);
+                  System.out.println("Read " + this.galaxy.getSize() + " stars from "
+                      + this.galaxy.getStarDataFile());
+                  for (Integer starId : nearestKNeighbors) {
+                    System.out.println(starId);
+                  }
+                } else {
+                  nearestKNeighbors =
+                      this.galaxy.getNearestKNeighborsWithName(arguments[1], arguments[2]);
+                  System.out.println(
+                      "Read " + this.galaxy.getSize() + " stars from "
+                          + this.galaxy.getStarDataFile());
+                  for (Integer starId : nearestKNeighbors) {
+                    System.out.println(starId);
+                  }
+                }
+              }
+            } catch (Exception e) {
+              System.out.println("ERROR: Incorrect arguments");
+            }
+          }
 
           MathBot mathbot = new MathBot();
           if (arguments[0].equals("add")) {
             double sum = mathbot.add(Double.parseDouble(arguments[1]),
                 Double.parseDouble(arguments[2]));
             System.out.println(sum);
-          } else if (arguments[0].equals("subtract")) {
+          }
+
+          if (arguments[0].equals("subtract")) {
             double diff = mathbot.subtract(Double.parseDouble(arguments[1]),
                 Double.parseDouble(arguments[2]));
             System.out.println(diff);
-          } else {
-            System.out.println(arguments[0]);
           }
         } catch (Exception e) {
           // e.printStackTrace();
@@ -89,7 +129,6 @@ public final class Main {
       e.printStackTrace();
       System.out.println("ERROR: Invalid input for REPL");
     }
-
   }
 
   private static FreeMarkerEngine createEngine() {
