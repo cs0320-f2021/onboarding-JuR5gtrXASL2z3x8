@@ -69,15 +69,14 @@ public final class Main {
         try {
           input = input.trim();
           String[] arguments = input.split(" (?=([^\"]*\"[^\"]*\")*[^\"]*$)");
+          // https://stackabuse.com/regex-splitting-by-character-unless-in-quotes/
           if (arguments[0].equals("stars")) {
             try {
               this.galaxy = new Galaxy(arguments[1]);
             } catch (Exception e) {
               System.out.println("ERROR: No stars file was specified");
             }
-          }
-
-          if (arguments[0].equals("naive_neighbors")) {
+          } else if (arguments[0].equals("naive_neighbors")) {
             try {
               ArrayList<Integer> nearestKNeighbors;
               if (arguments[1].equals("0")) {
@@ -106,6 +105,10 @@ public final class Main {
             } catch (Exception e) {
               System.out.println("ERROR: Incorrect arguments");
             }
+          } else {
+            System.out.println("Read " + this.galaxy.getSize() + " stars from "
+                + this.galaxy.getStarDataFile());
+            System.out.println("ERROR: Command does not exist");
           }
 
           MathBot mathbot = new MathBot();
