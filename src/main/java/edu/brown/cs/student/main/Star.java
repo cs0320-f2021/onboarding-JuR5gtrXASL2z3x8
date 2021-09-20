@@ -1,5 +1,8 @@
 package edu.brown.cs.student.main;
 
+/**
+ * Class representing a star.
+ */
 public class Star implements Comparable<Star> {
   private int id;
   private String name;
@@ -9,7 +12,7 @@ public class Star implements Comparable<Star> {
   private float distance;
 
   /**
-   * Default constructor
+   * Default constructor.
    * @param id unique id of the star
    * @param name name of the star
    * @param x x coordinate of the star
@@ -25,7 +28,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Constructor taking in param types of all strings
+   * Constructor taking in param types of all strings.
    * @param id unique id of the star
    * @param name name of the star
    * @param x x coordinate of the star
@@ -41,14 +44,14 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Empty constructor
+   * Empty constructor.
    */
   public Star() {
 
   }
 
   /**
-   * Gets the id of the star
+   * Gets the id of the star.
    * @return the id of the star
    */
   public int getId() {
@@ -56,7 +59,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Gets the x coordinate of the star
+   * Gets the x coordinate of the star.
    * @return the x coordinate of the star
    */
   public float getX() {
@@ -64,7 +67,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Gets the y coordinate of the star
+   * Gets the y coordinate of the star.
    * @return the y coordinate of the star
    */
   public float getY() {
@@ -72,7 +75,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Gets the z coordinate of the star
+   * Gets the z coordinate of the star.
    * @return the z coordinate of the star
    */
   public float getZ() {
@@ -80,7 +83,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Gets the name of the star
+   * Gets the name of the star.
    * @return the name of the star
    */
   public String getName() {
@@ -88,7 +91,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Gets the distance to the star from a pre-specified location
+   * Gets the distance to the star from a pre-specified location.
    * @return the distance to the star
    */
   public float getDistance() {
@@ -96,7 +99,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Sets the distance to the star from the specified location
+   * Sets the distance to the star from the specified location.
    * @param inputX the x coordinate of the specified location
    * @param inputY the y coordinate of the specified location
    * @param inputZ the z coordinate of the specified location
@@ -109,7 +112,7 @@ public class Star implements Comparable<Star> {
   }
 
   /**
-   * Compares the distance field of two stars
+   * Compares the distance field of two stars.
    * @param star the star to compare the current Star object to
    * @return the star whose distance is smaller
    */

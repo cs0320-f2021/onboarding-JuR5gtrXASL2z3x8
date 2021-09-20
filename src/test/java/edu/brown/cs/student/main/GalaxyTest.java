@@ -1,10 +1,12 @@
 package edu.brown.cs.student.main;
 
 import org.junit.Test;
+import org.junit.function.ThrowingRunnable;
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class GalaxyTest {
 
@@ -61,7 +63,7 @@ public class GalaxyTest {
     starList.add(star02);
     Galaxy galaxy = new Galaxy(starList);
 
-    assertEquals(new NullPointerException("ERROR: Given name does not match any stars in the galaxy!"),
-        galaxy.getNearestKNeighborsWithName("1", "Test"));
+    assertThrows(NullPointerException.class,
+        () -> {galaxy.getNearestKNeighborsWithName("1", "Test");});
   }
 }

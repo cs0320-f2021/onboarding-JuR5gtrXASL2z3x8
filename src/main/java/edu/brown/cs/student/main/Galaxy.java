@@ -5,20 +5,23 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Class representing a collection of Star objects.
+ */
 public class Galaxy {
   private ArrayList<Star> starList = new ArrayList<Star>();
   private String starDataFile;
   private int size;
 
   /**
-   * Empty constructor
+   * Empty constructor.
    */
   public Galaxy() {
 
   }
 
   /**
-   * Constructor that reads in a CSV file to populate a Galaxy object
+   * Constructor that reads in a CSV file to populate a Galaxy object.
    * @param starDataFile CSV file containing star data
    */
   public Galaxy(String starDataFile) {
@@ -40,7 +43,7 @@ public class Galaxy {
   }
 
   /**
-   * Default constructor
+   * Default constructor.
    * @param starList list of stars to set as the Galaxy's starList field
    */
   public Galaxy(ArrayList<Star> starList) {
@@ -48,7 +51,7 @@ public class Galaxy {
   }
 
   /**
-   * Gets the Galaxy's most recent CSV file (if exists) containing star data
+   * Gets the Galaxy's most recent CSV file (if exists) containing star data.
    * @return the Galaxy's most recent CSV file containing star data
    */
   public String getStarDataFile() {
@@ -64,7 +67,7 @@ public class Galaxy {
   }
 
   /**
-   * Gets the list of stars in the Galaxy
+   * Gets the list of stars in the Galaxy.
    * @return the list of stars in the Galaxy
    */
   public ArrayList<Star> getStarList() {
@@ -72,7 +75,7 @@ public class Galaxy {
   }
 
   /**
-   * Given the name of a star, searches the Galaxy for the star with the name
+   * Given the name of a star, searches the Galaxy for the star with the name.
    * @param inputName the given star name
    * @return the star whose name matches the input name, null if no names match
    */
@@ -90,7 +93,7 @@ public class Galaxy {
   }
 
   /**
-   * Gets a list of stars of a specified length that are closest in distance to the given location
+   * Gets a list of stars of a specified length that are closest in distance to the given location.
    * @param k the number of neighboring stars to list
    * @param inputX the x coordinate of the given location
    * @param inputY the y coordinate of the given location
@@ -115,7 +118,7 @@ public class Galaxy {
   }
 
   /**
-   * Gets a list of stars of a specified length that are closest in distance to the given star
+   * Gets a list of stars of a specified length that are closest in distance to the given star.
    * @param k the number of neighboring stars to list
    * @param starName the name of the star
    * @return a list of star ids that are closest in distance to the given star
@@ -142,7 +145,7 @@ public class Galaxy {
   }
 
   /**
-   * Helper function that formulates the list given a specified number of neighbors
+   * Helper function that formulates the list given a specified number of neighbors.
    * @param integerK the given number of neighboring stars to list
    * @param nearestKNeighbors the list of distances corresponding to each star
    * @return a list of star ids with a length equal to the specified number of neighbors
